@@ -8,6 +8,7 @@
   "rules": {
     "object-curly-spacing": "off",
     "arrow-parens": "off",
+    "require-jsdoc": "off",
   },
   "extends": [
     "eslint:recommended", 
