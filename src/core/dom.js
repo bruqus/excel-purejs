@@ -1,11 +1,47 @@
 'use strict';
 
 class Dom {
+  constructor(selector) {
+    this.$el = typeof selector === 'string'
+      ? document.querySelector(selector)
+      : selector;
+  }
 
+  html(html) {
+    if (typeof html === 'string') {
+      this.$el.innerHTML = html;
+      return this;
+    } else {
+      return this.$el.outerHTML.trim();
+    }
+  }
+
+  append(node) {
+    if (node instanceof Dom) node = node.$el;
+
+    if (Element.prototype.append) {
+      this.$el.append(node);
+    } else {
+      this.$el.appendChild(node);
+    }
+  }
+
+  on(eventType, cb) {
+    this.$el.addEventListener(eventType, cb);
+  }
+
+  off(eventType, cb) {
+    this.$el.removeEventListener(eventType, cb);
+  }
+
+  clear() {
+    this.html('');
+    return this;
+  }
 }
 
-export function $() {
-  return new Dom();
+export function $(selector) {
+  return new Dom(selector);
 }
 
 $.create = (tagName, classes = '') => {
@@ -15,5 +51,5 @@ $.create = (tagName, classes = '') => {
     el.classList.add(classes);
   }
 
-  return el;
+  return $(el);
 };
