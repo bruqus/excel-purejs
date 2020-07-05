@@ -70,10 +70,11 @@
     right: 0;
     bottom: 0;
     opacity: 0;
+    z-index: 999;
     background: $primary-color; 
     
     &:hover {
-      opacity: 1;
+      opacity: 1!important;
     }
   }
 
