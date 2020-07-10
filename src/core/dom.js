@@ -11,9 +11,22 @@ class Dom {
     if (typeof html === 'string') {
       this.$el.innerHTML = html;
       return this;
-    } else {
-      return this.$el.outerHTML.trim();
     }
+
+    return this.$el.outerHTML.trim();
+  }
+
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text;
+      return this;
+    }
+
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim();
+    }
+
+    return this.$el.textContent.trim();
   }
 
   focus() {
