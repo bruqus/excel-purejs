@@ -5,7 +5,15 @@ import { Header } from '@/components/header/Header';
 import { Toolbar } from '@/components/toolbar/Toolbar';
 import { Formula } from '@/components/formula/Formula';
 import { Table } from '@/components/table/Table';
+import { reducer } from '@/store/reducer';
+import { createStore } from '@core/createStore';
+import { storage } from '@core/utils';
+import { initialState } from '@/store/initialState';
 import './scss/index.scss';
+
+const store = createStore(reducer, initialState);
+
+store.subscribe(state => storage('excel-state', state));
 
 const excel = new Excel('#app', {
   components: [
@@ -14,6 +22,7 @@ const excel = new Excel('#app', {
     Formula,
     Table,
   ],
+  store,
 });
 
 excel.render();
