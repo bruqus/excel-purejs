@@ -5,6 +5,7 @@ import { ExcelComponent } from '@core/ExcelComponent';
 import { createTable } from '@/components/table/table.template';
 import { resizeHandler } from '@/components/table/table.resize';
 import { TableSelection } from '@/components/table/TableSelection';
+import * as actions from '@/store/actions';
 import {
   shouldResize,
   isCell,
@@ -24,7 +25,7 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(20);
+    return createTable(20, this.store.getState());
   }
 
   prepare() {
@@ -48,9 +49,18 @@ export class Table extends ExcelComponent {
     this.$on('formula:done', () => this.selection.current.focus());
   }
 
+  async resizeTable(action) {
+    try {
+      const data = await resizeHandler(this.$root, event);
+      this.$dispatch(actions.tableResize(data));
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
-      resizeHandler(this.$root, event);
+      this.resizeTable(event);
     }
 
     if (isCell(event)) {
