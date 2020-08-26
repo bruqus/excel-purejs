@@ -2,9 +2,10 @@
 
 class Dom {
   constructor(selector) {
-    this.$el = typeof selector === 'string'
-      ? document.querySelector(selector)
-      : selector;
+    this.$el =
+      typeof selector === 'string'
+        ? document.querySelector(selector)
+        : selector;
   }
 
   html(html) {
@@ -78,8 +79,7 @@ class Dom {
   }
 
   css(styles = {}) {
-    Object.keys(styles)
-        .forEach(key => this.$el.style[key] = styles[key]);
+    Object.keys(styles).forEach(key => (this.$el.style[key] = styles[key]));
   }
 
   addClass(className) {

@@ -14,9 +14,7 @@ export class ExcelComponent extends DomListener {
     this.prepare();
   }
 
-  prepare() {
-
-  }
+  prepare() {}
 
   toHTML() {
     return '';

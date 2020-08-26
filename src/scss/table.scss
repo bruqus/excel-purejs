@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@import 'variables';
+@import 'mixins';
 
 .excel__table {
   position: absolute;
@@ -62,19 +62,20 @@
       border: none;
       outline: 2px solid $primary-color;
       z-index: 2;
-    } 
+    }
   }
 
-  & .col-resize, .row-resize {
+  & .col-resize,
+  .row-resize {
     position: absolute;
     right: 0;
     bottom: 0;
     opacity: 0;
     z-index: 999;
-    background: $primary-color; 
-    
+    background: $primary-color;
+
     &:hover {
-      opacity: 1!important;
+      opacity: 1 !important;
     }
   }
 
@@ -96,4 +97,3 @@
     }
   }
 }
-

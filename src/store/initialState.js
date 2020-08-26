@@ -8,5 +8,3 @@ const defaultState = {
 };
 
 export const initialState = storage('excel-state') || defaultState;
-
-

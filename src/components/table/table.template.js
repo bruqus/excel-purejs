@@ -17,7 +17,7 @@ function getHeight(state = {}, idx) {
 }
 
 function toCell(row, state) {
-  return function(_, col) {
+  return function (_, col) {
     return `
       <div class="cell"
         contenteditable
@@ -45,9 +45,7 @@ function toColumn({ col, index, width }) {
 }
 
 function createRow(index, content, state) {
-  const resize = index
-      ? '<div class="row-resize"data-resize="row"></div>'
-      : '';
+  const resize = index ? '<div class="row-resize"data-resize="row"></div>' : '';
 
   return `
     <div class="row"
@@ -81,11 +79,11 @@ export function createTable(rowsCount = 10, state) {
   const rows = [];
 
   const cols = new Array(colsCount)
-      .fill('')
-      .map(toChar)
-      .map(withWidthFrom(state.colState))
-      .map(toColumn)
-      .join('');
+    .fill('')
+    .map(toChar)
+    .map(withWidthFrom(state.colState))
+    .map(toColumn)
+    .join('');
 
   getWidth(8, 5);
 
@@ -93,9 +91,9 @@ export function createTable(rowsCount = 10, state) {
 
   for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
-        .fill('')
-        .map(toCell(row, state))
-        .join('');
+      .fill('')
+      .map(toCell(row, state))
+      .join('');
     rows.push(createRow(row + 1, cells, state.rowState));
   }
 

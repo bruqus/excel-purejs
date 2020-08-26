@@ -13,6 +13,7 @@ export function reducer(state, action) {
       prevState[action.data.id] = action.data.value;
       return { ...state, [field]: prevState };
     }
-    default: return state;
+    default:
+      return state;
   }
 }

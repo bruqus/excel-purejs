@@ -11,9 +11,7 @@ export function range(start, end) {
     [end, start] = [start, end];
   }
 
-  return new Array(end - start + 1)
-      .fill('')
-      .map((_, idx) => start + idx);
+  return new Array(end - start + 1).fill('').map((_, idx) => start + idx);
 }
 
 export function storage(key, data) {

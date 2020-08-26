@@ -66,8 +66,9 @@ export class Table extends ExcelComponent {
     if (isCell(event)) {
       const $target = $(event.target);
       if (event.shiftKey) {
-        const $cells = matrix($target, this.selection.current)
-            .map(id => this.$root.find(`[data-id="${id}"]`));
+        const $cells = matrix($target, this.selection.current).map(id =>
+          this.$root.find(`[data-id="${id}"]`)
+        );
         this.selection.selectGroup($cells);
       } else {
         this.selectCell($target);
