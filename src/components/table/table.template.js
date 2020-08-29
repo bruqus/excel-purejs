@@ -18,14 +18,16 @@ function getHeight(state = {}, idx) {
 
 function toCell(row, state) {
   return function (_, col) {
+    const id = `${row}:${col}`;
+    const data = state.dataState[id];
     return `
       <div class="cell"
         contenteditable
         data-col="${col}"
         data-type="cell"
-        data-id="${row}:${col}"
+        data-id="${id}"
         style="width: ${getWidth(state.colState, col)}"
-      ></div>
+      >${data || ''}</div>
     `;
   };
 }
