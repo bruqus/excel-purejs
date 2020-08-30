@@ -1,6 +1,6 @@
 'use strict';
 
-import { TABLE_RESIZE, CHANGE_TEXT } from '@/store/types';
+import { TABLE_RESIZE, CHANGE_TEXT, CHANGE_STYLES } from '@/store/types';
 
 export function reducer(state, action) {
   let field;
@@ -16,6 +16,8 @@ export function reducer(state, action) {
         currentText: action.data.value,
         dataState: value(state, field, action),
       };
+    case CHANGE_STYLES:
+      return { ...state, currentStyles: action.data };
     default:
       return state;
   }
