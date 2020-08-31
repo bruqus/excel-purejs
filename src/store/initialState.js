@@ -1,7 +1,7 @@
 'use strict';
 
 import { storage } from '@/core/utils';
-import { defaultStyles } from '@/constants';
+import { defaultStyles, defaultTitle } from '@/constants';
 
 const defaultState = {
   rowState: {},
@@ -9,6 +9,7 @@ const defaultState = {
   dataState: {},
   stylesState: {},
   currentText: '',
+  title: defaultTitle,
   currentStyles: defaultStyles,
 };
 
