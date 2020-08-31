@@ -1,9 +1,15 @@
 'use strict';
 
-import { TABLE_RESIZE, CHANGE_TEXT, CHANGE_STYLES } from '@/store/types';
+import {
+  TABLE_RESIZE,
+  CHANGE_TEXT,
+  CHANGE_STYLES,
+  APPLY_STYLE,
+} from '@/store/types';
 
 export function reducer(state, action) {
   let field;
+  let val;
 
   switch (action.type) {
     case TABLE_RESIZE:
@@ -18,6 +24,17 @@ export function reducer(state, action) {
       };
     case CHANGE_STYLES:
       return { ...state, currentStyles: action.data };
+    case APPLY_STYLE:
+      field = 'stylesState';
+      val = state[field] || {};
+      action.data.ids.forEach(id => {
+        val[id] = { ...val[id], ...action.data.value };
+      });
+      return {
+        ...state,
+        [field]: val,
+        currentStyles: { ...state.currentStyles, ...action.data.value },
+      };
     default:
       return state;
   }

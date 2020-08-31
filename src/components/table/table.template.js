@@ -1,7 +1,6 @@
 'use strict';
 
-import { defaultStyles } from '@/constants';
-import { camelToDashCase } from '@core/utils';
+import { toInlineStyles } from '@core/utils';
 
 const DEFAULT_WIDTH = 120;
 const DEFAULT_HEIGHT = 24;
@@ -23,16 +22,14 @@ function toCell(row, state) {
   return function (_, col) {
     const id = `${row}:${col}`;
     const data = state.dataState[id];
-    const styles = Object.keys(defaultStyles)
-      .map(key => `${camelToDashCase(key)}: ${defaultStyles[key]}`)
-      .join(';');
+    const styles = toInlineStyles(state.stylesState[id]);
     return `
       <div class="cell"
         contenteditable
         data-col="${col}"
         data-type="cell"
         data-id="${id}"
-        style="${styles}; width: ${getWidth(state.colState, col)}"
+        style="${styles} width: ${getWidth(state.colState, col)}"
       >${data || ''}</div>
     `;
   };
