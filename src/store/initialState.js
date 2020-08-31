@@ -18,4 +18,6 @@ const normalize = state => ({
   currentText: '',
 });
 
-export const initialState = normalize(storage('excel-state')) || defaultState;
+export const initialState = storage('excel-state')
+  ? normalize(storage('excel-state'))
+  : defaultState;
