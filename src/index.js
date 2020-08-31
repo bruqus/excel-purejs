@@ -7,21 +7,17 @@ import { Formula } from '@/components/formula/Formula';
 import { Table } from '@/components/table/Table';
 import { reducer } from '@/store/reducer';
 import { createStore } from '@core/createStore';
-import { storage } from '@core/utils';
+import { storage, debounce } from '@core/utils';
 import { initialState } from '@/store/initialState';
 import './scss/index.scss';
 
 const store = createStore(reducer, initialState);
 
-store.subscribe(state => storage('excel-state', state));
+const stateListener = debounce(state => storage('excel-state', state), 300);
+store.subscribe(stateListener);
 
 const excel = new Excel('#app', {
-  components: [
-    Header,
-    Toolbar,
-    Formula,
-    Table,
-  ],
+  components: [Header, Toolbar, Formula, Table],
   store,
 });
 
