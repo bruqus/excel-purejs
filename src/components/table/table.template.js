@@ -1,6 +1,7 @@
 'use strict';
 
 import { toInlineStyles } from '@core/utils';
+import { parse } from '@core/parse';
 import { defaultStyles } from '@/constants';
 
 const DEFAULT_WIDTH = 120;
@@ -33,8 +34,9 @@ function toCell(row, state) {
         data-col="${col}"
         data-type="cell"
         data-id="${id}"
+        data-value="${data || ''}"
         style="${styles} width: ${getWidth(state.colState, col)}"
-      >${data || ''}</div>
+      >${parse(data) || ''}</div>
     `;
   };
 }
