@@ -6,6 +6,7 @@ import {
   CHANGE_STYLES,
   APPLY_STYLE,
   CHANGE_TITLE,
+  UPDATE_DATE,
 } from '@/store/types';
 
 export function reducer(state, action) {
@@ -40,6 +41,11 @@ export function reducer(state, action) {
       return {
         ...state,
         title: action.data,
+      };
+    case UPDATE_DATE:
+      return {
+        ...state,
+        openedDate: new Date().toJSON(),
       };
     default:
       return state;
