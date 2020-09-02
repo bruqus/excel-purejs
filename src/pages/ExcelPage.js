@@ -8,14 +8,23 @@ import { Table } from '@/components/table/Table';
 import { reducer } from '@/store/reducer';
 import { createStore } from '@core/createStore';
 import { storage, debounce } from '@core/utils';
-import { initialState } from '@/store/initialState';
 import { Page } from '@core/Page';
+import { normalizeInitialState } from '@/store/initialState';
+
+function storageName(param) {
+  return 'excel:' + param;
+}
 
 export class ExcelPage extends Page {
   getRoot() {
-    const store = createStore(reducer, initialState);
+    const params = this.params || Date.now().toString();
+    const state = storage(storageName(this.params));
+    const store = createStore(reducer, normalizeInitialState(state));
 
-    const stateListener = debounce(state => storage('excel-state', state), 300);
+    const stateListener = debounce(
+      state => storage(storageName(params), state),
+      300
+    );
     store.subscribe(stateListener);
 
     this.excel = new Excel({
