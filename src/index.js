@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 import { Router } from '@core/routes/Router';
 import { DashboardPage } from '@/pages/DashboardPage';

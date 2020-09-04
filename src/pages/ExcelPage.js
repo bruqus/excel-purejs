@@ -6,7 +6,7 @@ import { Toolbar } from '@/components/toolbar/Toolbar';
 import { Formula } from '@/components/formula/Formula';
 import { Table } from '@/components/table/Table';
 import { reducer } from '@/store/reducer';
-import { createStore } from '@core/createStore';
+import { createStore } from '@core/store/createStore';
 import { storage, debounce } from '@core/utils';
 import { Page } from '@core/Page';
 import { normalizeInitialState } from '@/store/initialState';
