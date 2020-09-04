@@ -26,8 +26,8 @@ describe('Router', () => {
     expect(router).toBeDefined();
   });
 
-  it('renders Dashboard Page', () => {
-    router.changePageHandler();
+  it('renders Dashboard Page', async () => {
+    await router.changePageHandler();
     expect($root.innerHTML).toBe('<div>dashboard</div>');
   });
 });
